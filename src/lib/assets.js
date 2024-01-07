@@ -23,4 +23,16 @@ export let availableAssets = [
             return {x: 0, y: Math.PI/2 * Math.floor(Math.random()*4), z: 0}
         }
     },
+    {
+        type: 'asset',
+        number: 0,
+        name: 'capsule3',
+        url: '/assets/mushroom_platform.glb',
+        state: 'notSelected',
+        selected: false,
+        color: 'blue',
+        getRotation(){
+            return {x: 0, y: Math.PI/2 * Math.floor(Math.random()*4), z: 0}
+        }
+    }
 ]
