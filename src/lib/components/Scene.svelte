@@ -49,7 +49,7 @@
   }).then(result =>{
     $loadedAssetsNumber++
     asset.mesh = new Mesh(result.scene.children[0].geometry, result.scene.children[0].material)
-    // console.log($loadedAssetsNumber, availableAssets.length)
+    // console.log($loadedAssetsNumber)
   })
   }
 
