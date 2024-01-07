@@ -1,27 +1,44 @@
 <script>
-  import { T, useFrame} from '@threlte/core'
+  import { T, useFrame, useThrelte } from '@threlte/core'
   import { interactivity, ContactShadows, Float, Grid, OrbitControls, InstancedMesh, Instance, useGltf, useCursor } from '@threlte/extras'
 
   import { updateWorld } from '../worldCA';
   import { availableAssets } from '../assets';
-  import { Mesh, BufferGeometry, MeshStandardMaterial, AxesHelper, HemisphereLight } from 'three';
+  import { Mesh, BufferGeometry, MeshStandardMaterial, AxesHelper, HemisphereLight, BufferAttribute, AdditiveBlending } from 'three';
   import { loadedAssetsNumber } from '../store';
 
+  const { scene } = useThrelte()
+
   interactivity()
-  // useFrame((state, delta) => {
-  //   for (let asset of assetsData){
-  //     if(asset.userLoopCode != ''){
-  //       try {
-  //         //eval(asset.loop)
-  //         const executeUserCode = new Function("object",  [...libCommands].join('\n') + asset.userLoopCode);
-  //         executeUserCode.call(asset, asset);
-  //         assetsData = [...assetsData]
-  //         } catch (error) {
-  //         console.error(error);
-  //         }
-  //     }
-  //   }
-  // })
+
+  const particlesGeometry = new BufferGeometry()
+  const count = 1500
+
+  const positions = new Float32Array(count * 3)
+
+  for(let i = 0; i < count * 3; i++)
+  {
+      positions[i] = Math.random() * 11 - 1
+  }
+
+  particlesGeometry.setAttribute('position', new BufferAttribute(positions, 3))
+
+
+  useFrame((state, delta) => {
+    for(let i = 0; i < count * 3; i+=3)
+    {
+      positions[i] += Math.sin( positions[i+1] ) * 0.001
+      positions[i+1] += 0.1 * delta
+        if( positions[i+1] > 11 ){
+          positions[i+1] = 0
+          positions[i] = Math.random() * 11 - 1
+          positions[i+2] = Math.random() * 11 - 1
+        }
+      positions[i+2] += Math.cos( positions[i+1] ) * 0.001
+    }
+    particlesGeometry.setAttribute('position', new BufferAttribute(positions, 3))
+  })
+
   const { onPointerEnter, onPointerLeave } = useCursor('pointer', 'default')
 
   $loadedAssetsNumber = 0
@@ -84,7 +101,15 @@
 
   getAssetsData()
 
+
+
+
 </script>
+
+<T.Points>
+  <T is={particlesGeometry} />
+  <T.PointsMaterial color={'cyan'} size={0.065} blending={AdditiveBlending} />
+</T.Points>
 
 <T.PerspectiveCamera
   makeDefault
@@ -92,8 +117,10 @@
   fov={25}
 >
   <OrbitControls
-    autoRotate
+    autoRotate={false}
     enableZoom={true}
+    minDistance = {15}
+    maxDistance = {45}
     enableDamping
     autoRotateSpeed={0.5}
     target.y={5}
@@ -102,6 +129,7 @@
 </T.PerspectiveCamera>
 
 <T.DirectionalLight
+  color={'#1d849e'}
   intensity={0.8}
   position.x={5}
   position.y={10}
@@ -123,6 +151,16 @@
   far={2.5}
   opacity={0.5}
 />
+
+
+
+<T.FogExp2 color={'#06191f'} density={0.025} 
+  on:create={({ ref }) => {
+  scene.fog = ref
+  //cleanup(() => scene.fog = null) 
+}} />
+
+<!-- <FogExp2 color={'#dddddd'} density={0.3} /> -->
 
 {#if $loadedAssetsNumber === availableAssets.length}
 {#each availableAssets as asset}
