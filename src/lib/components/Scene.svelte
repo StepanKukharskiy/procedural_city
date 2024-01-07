@@ -138,19 +138,21 @@
 
 <Grid
   position.y={-0.01}
+  position= {[5,0,5]}
   cellColor="#ffffff"
   sectionColor="#ffffff"
   sectionThickness={0}
   fadeDistance={25}
   cellSize={1}
+  gridSize={[10, 10]}
 />
 
-<ContactShadows
+<!-- <ContactShadows
   scale={20}
   blur={2}
   far={2.5}
   opacity={0.5}
-/>
+/> -->
 
 
 
