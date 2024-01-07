@@ -9,10 +9,12 @@
   <Scene bind:this={proceduralWorld} />
 </Canvas>
 
-<button id='createButton' on:click={()=>{proceduralWorld.getAssetsData()}} style='margin: 20px 0 20px 10px;'>Generate City</button>
+<button id='createButton' on:click={()=>{proceduralWorld.getAssetsData()}} style='margin: 20px 0 20px 10px;'>Create New City</button>
 
 <style>
   #createButton{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2em;
     position: absolute;
     bottom: 0;
     width: 200px;
@@ -22,5 +24,6 @@
     background: radial-gradient(#3d95ee, #4233fb);
     box-shadow: 0 0 10px #3d95ee;
     color: #f9f9f9;
+    cursor: pointer;
   }
 </style>

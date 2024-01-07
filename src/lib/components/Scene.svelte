@@ -134,7 +134,7 @@
   position.x={5}
   position.y={10}
 />
-<T.AmbientLight intensity={0.5} />
+<T.AmbientLight intensity={1.0} />
 
 <Grid
   position.y={-0.01}
