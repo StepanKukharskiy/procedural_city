@@ -1,11 +1,13 @@
 <script>
   import App from '$lib/components/App.svelte'
-  import { loadedAssetsNumber } from '$lib/store';
+  import { loadedAssetsNumber, netData } from '$lib/store';
   import '../styles.css' 
   import { availableAssets } from '$lib/assets';
 
   let startScreenDisplay = 'flex'
+
 </script>
+
 
 
 <div class='startScreen' style='display: {startScreenDisplay}'>
@@ -13,19 +15,22 @@
   <p>
     This project is created for the Three.js Journey Procedural World challenge. <br><br>
     It is a fantasy city, inspired by the idea of discrete space, works of Stephen Wolfram, and capsule architecture of Nakagin Tower in Tokyo. <br><br>
-    The world's generation is driven by a 3D Neural Cellular Automaton - a 3D cellular automaton controlled by a neural network.<br><br>
-    Built with Threlte, SvelteKit, Three.js, and Brain.js. Here is the <a href=''>GitHub repo</a>.<br><br>
-    Thanks for the inspiration! Have a great day! <br>
+    The world's generation is driven by a 3D Neural Cellular Automaton - a 3D cellular automaton controlled by a pre-trained neural network.<br><br>
+    Built with Threlte, SvelteKit, Three.js, and Brain.js. Modelled with Blender. Textures made with Midjourney. Here is the <a href='https://github.com/StepanKukharskiy/procedural_city'>GitHub repo</a>.<br><br>
+    Thanks for checking it out! Have a great day! <br>
     Stepan<br>
     ✨
   </p>
 
-  {#if $loadedAssetsNumber === availableAssets.length}
-    <button on:click={()=>{startScreenDisplay = 'none'}}>EXPLORE</button>
-  {:else}
-    <div class='loader'></div>
-    <p>loading...</p>
-  {/if}
+  <div style='max-width: 500px; height: 150px; background: none; display: flex; justify-content: center; align-items: center; flex-direction: column;'>
+    {#if $loadedAssetsNumber === availableAssets.length && $netData}
+      <!-- <p>Net trained! Error: {$netData.error} Iterations: {$netData.iterations}</p> -->
+      <button on:click={()=>{startScreenDisplay = 'none'}}>Explore</button>
+    {:else}
+      <div class='loader'></div>
+      <p>loading assets...</p>
+    {/if}
+  </div>
 </div>
 
 
@@ -55,6 +60,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
   }
 
   .startScreen h2{

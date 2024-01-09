@@ -3,9 +3,106 @@
   import { interactivity, ContactShadows, Float, Grid, OrbitControls, InstancedMesh, Instance, useGltf, useCursor } from '@threlte/extras'
 
   import { updateWorld } from '../worldCA';
+  import { updateWorldWithNeuralNetwork } from '../worldNCA';
   import { availableAssets } from '../assets';
   import { Mesh, BufferGeometry, MeshStandardMaterial, AxesHelper, HemisphereLight, BufferAttribute, AdditiveBlending } from 'three';
-  import { loadedAssetsNumber } from '../store';
+  import { loadedAssetsNumber, netData, net } from '../store';
+
+  import { onMount } from 'svelte';
+  
+  let brain;
+  let assetsData = [];
+
+
+  onMount(() => {
+    // const script = document.createElement('script');
+    // script.src = 'https://unpkg.com/brain.js';
+    // script.async = true;
+    // script.onload = () => {
+    //   brain = window.brain;
+    //   // Now you can use the 'brain' object here
+    //   console.log(brain);
+
+    //   net = new brain.NeuralNetwork()
+    //   console.log(net)
+    // };
+    // document.body.appendChild(script);
+    
+    brain = window.brain;
+      // Now you can use the 'brain' object here
+      console.log(brain);
+
+      // net = new brain.NeuralNetwork()
+      // console.log(net)
+
+      // Define the training data
+    // const trainingData = [
+    //   { input: { aliveNeighbors: 0 }, output: { aliveNextValue: 0 } },
+    //   { input: { aliveNeighbors: 1 }, output: { aliveNextValue: 0 } },
+    //   { input: { aliveNeighbors: 2 }, output: { aliveNextValue: 0 } },
+    //   { input: { aliveNeighbors: 3 }, output: { aliveNextValue: 0 } },
+    //   { input: { aliveNeighbors: 4 }, output: { aliveNextValue: 0 } },
+    //   { input: { aliveNeighbors: 5 }, output: { aliveNextValue: 0 } },
+    //   { input: { aliveNeighbors: 6 }, output: { aliveNextValue: 0 } },
+    //   { input: { aliveNeighbors: 7 }, output: { aliveNextValue: 0 } },
+    //   { input: { aliveNeighbors: 8 }, output: { aliveNextValue: 1 } },
+    //   { input: { aliveNeighbors: 9 }, output: { aliveNextValue: 1 } },
+    //   { input: { aliveNeighbors: 10 }, output: { aliveNextValue: 1 } },
+    //   { input: { aliveNeighbors: 11 }, output: { aliveNextValue: 1 } },
+    //   { input: { aliveNeighbors: 12 }, output: { aliveNextValue: 1 } },
+    //   { input: { aliveNeighbors: 13 }, output: { aliveNextValue: 1 } },
+    //   { input: { aliveNeighbors: 14 }, output: { aliveNextValue: 1 } },
+    //   { input: { aliveNeighbors: 15 }, output: { aliveNextValue: 1 } },
+    //   { input: { aliveNeighbors: 16 }, output: { aliveNextValue: 1 } },
+    //   { input: { aliveNeighbors: 17 }, output: { aliveNextValue: 0 } },
+    //   { input: { aliveNeighbors: 18 }, output: { aliveNextValue: 0 } },
+    //   { input: { aliveNeighbors: 19 }, output: { aliveNextValue: 0 } },
+    //   { input: { aliveNeighbors: 20 }, output: { aliveNextValue: 0 } },
+    //   { input: { aliveNeighbors: 21 }, output: { aliveNextValue: 0 } },
+    //   { input: { aliveNeighbors: 22 }, output: { aliveNextValue: 0 } },
+    //   { input: { aliveNeighbors: 23 }, output: { aliveNextValue: 0 } },
+    //   { input: { aliveNeighbors: 24 }, output: { aliveNextValue: 0 } },
+    //   { input: { aliveNeighbors: 25 }, output: { aliveNextValue: 0 } },
+    //   { input: { aliveNeighbors: 26 }, output: { aliveNextValue: 0 } },
+    //   { input: { aliveNeighbors: 27 }, output: { aliveNextValue: 0 } },
+    // ];
+
+
+
+    // Create a neural network
+    $net = new brain.NeuralNetwork();
+
+    // const config = {
+    //   errorThresh: 0.05,
+    //   iterations: 100000,
+    //   hiddenLayers: [3],
+    // }
+
+    // Train the neural network
+    // $netData = $net.train(trainingData, config);
+    // console.log($netData)
+
+    // const networkState = $net.toJSON();
+    // console.log(networkState)
+
+    // const downloadFile = () => {
+    //      const link = document.createElement("a");
+    //      const content = JSON.stringify(networkState);
+    //      const file = new Blob([content], { type: 'text/plain' });
+    //      link.href = URL.createObjectURL(file);
+    //      link.download = "network_state.json";
+    //      link.click();
+    //      URL.revokeObjectURL(link.href);
+    //   };
+
+    //   downloadFile()
+
+    $net.fromJSON(JSON.parse('{"type":"NeuralNetwork","sizes":[1,3,1],"layers":[{"weights":[],"biases":[]},{"weights":[[-1.6377098560333252],[-1.8206164836883545],[-0.9183825850486755]],"biases":[9.119729042053223,10.378096580505371,13.632582664489746]},{"weights":[[-5.250181198120117,-5.520458698272705,5.978018283843994]],"biases":[-3.7345571517944336]}],"inputLookup":{"aliveNeighbors":0},"inputLookupLength":1,"outputLookup":{"aliveNextValue":0},"outputLookupLength":1,"options":{"inputSize":0,"outputSize":0,"binaryThresh":0.5},"trainOpts":{"activation":"sigmoid","iterations":100000,"errorThresh":0.05,"log":false,"logPeriod":10,"leakyReluAlpha":0.01,"learningRate":0.3,"momentum":0.1,"callbackPeriod":10,"timeout":"Infinity","beta1":0.9,"beta2":0.999,"epsilon":1e-8}}'))
+    $netData = 'hi'
+    getAssetsData(10,10,10,15,$net)
+  });
+
+  console.log(brain)
 
   const { scene } = useThrelte()
 
@@ -66,18 +163,18 @@
     }
   }
 
-  let assetsData = []
-
-  export function getAssetsData(x = 10, y = 10, z = 10, gens = 5){
+  
+  export function getAssetsData(x = 10, y = 10, z = 10, gens = 5, net){
     assetsData = []
     //console.log($selectedAssets)
     let cells
-    cells = updateWorld(x, y, z, gens)
+    // cells = updateWorld(x, y, z, gens)
+    cells = updateWorldWithNeuralNetwork(x, y, x, gens, net)
     let id = 0
     for(let i=0; i<cells.length; i++){
       for(let j=0; j<cells[i].length; j++){
         for(let k=0; k<cells[i][j].length; k++){  
-          if(cells[i][j][k].aliveNow){
+          if(cells[i][j][k].aliveNow.aliveNextValue > 0.85){
             let selectedAssetNumber = Math.floor(Math.random() * availableAssets.length)
             // console.log(availableAssets[selectedAssetNumber].getRotation())
             
@@ -99,7 +196,7 @@
     // $worldData.assets = assetsData
   }
 
-  getAssetsData()
+  //getAssetsData()
 
 
 
@@ -113,7 +210,7 @@
 
 <T.PerspectiveCamera
   makeDefault
-  position={[-10, 10, -10]}
+  position={[-20, 10, -20]}
   fov={25}
 >
   <OrbitControls
@@ -156,7 +253,7 @@
 
 
 
-<T.FogExp2 color={'#06191f'} density={0.025} 
+<T.FogExp2 color={'#06191f'} density={0.0125} 
   on:create={({ ref }) => {
   scene.fog = ref
   //cleanup(() => scene.fog = null) 
