@@ -48,7 +48,7 @@
   .startScreen{
     width: 100vw;
     height: auto;
-    min-height: 100svh;
+    min-height: 100vh;
     position: absolute;
     top: 0;
     left: 0;
