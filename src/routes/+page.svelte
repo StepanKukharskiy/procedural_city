@@ -73,8 +73,8 @@
     height: 40px;
     border-radius: 20px;
     border: none;
-    background: radial-gradient(#3d95ee, #4233fb);
-    box-shadow: 0 0 10px #3d95ee;
+    background: radial-gradient(#8ee7d1, #013d38);
+    box-shadow: 0 0 10px #8ee7d190;
     color: #f9f9f9;
     margin: 20px;
     cursor: pointer;
@@ -120,6 +120,9 @@
     height: 100vh;
     background: rgb(13, 19, 32);
     background: linear-gradient(180deg, #000609 0%, #0e2f37 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
 </style>

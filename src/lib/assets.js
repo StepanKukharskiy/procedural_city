@@ -26,7 +26,7 @@ export let availableAssets = [
     {
         type: 'asset',
         number: 0,
-        name: 'capsule3',
+        name: 'platform1',
         url: '/assets/mushroom_platform.glb',
         state: 'notSelected',
         selected: false,
@@ -38,7 +38,7 @@ export let availableAssets = [
     {
         type: 'asset',
         number: 0,
-        name: 'capsule3',
+        name: 'platform2',
         url: '/assets/mushroom_platform_2.glb',
         state: 'notSelected',
         selected: false,

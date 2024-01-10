@@ -29,8 +29,6 @@
     // document.body.appendChild(script);
     
     brain = window.brain;
-      // Now you can use the 'brain' object here
-      console.log(brain);
 
       // net = new brain.NeuralNetwork()
       // console.log(net)
@@ -102,7 +100,6 @@
     getAssetsData(10,10,10,15,$net)
   });
 
-  console.log(brain)
 
   const { scene } = useThrelte()
 
@@ -154,6 +151,7 @@
     loadAsset(asset)
   }
 
+
   class Object3D {
     constructor(id = 0, position = {}, rotation = {}, name = '' ) {
       this.id = id;
@@ -191,15 +189,8 @@
         }
       }
     }
-    console.log(assetsData[0])
-    // $worldData.assetsNumber = assetsData.length
-    // $worldData.assets = assetsData
+
   }
-
-  //getAssetsData()
-
-
-
 
 </script>
 
@@ -227,13 +218,13 @@
 
 <T.DirectionalLight
   color={'#1d849e'}
-  intensity={0.8}
+  intensity={1.5}
   position.x={15}
   position.y={5}
 />
-<T.AmbientLight intensity={1.0} />
+<T.AmbientLight intensity={1.2} />
 
-<Grid
+<!-- <Grid
   position.y={-0.01}
   position= {[5,0,5]}
   cellColor="#ffffff"
@@ -242,7 +233,7 @@
   fadeDistance={25}
   cellSize={1}
   gridSize={[10, 10]}
-/>
+/> -->
 
 <!-- <ContactShadows
   scale={20}

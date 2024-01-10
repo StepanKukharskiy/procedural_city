@@ -28,7 +28,6 @@ function generateCells(widthNum = 2, depthNum = 2, heightNum = 2){
             }
         }
     }
-    console.log('generated CA world', cells)
     return cells
 }
 
