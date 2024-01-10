@@ -228,8 +228,8 @@
 <T.DirectionalLight
   color={'#1d849e'}
   intensity={0.8}
-  position.x={5}
-  position.y={10}
+  position.x={15}
+  position.y={5}
 />
 <T.AmbientLight intensity={1.0} />
 
