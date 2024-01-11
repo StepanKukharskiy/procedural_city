@@ -22,7 +22,7 @@
     height: 40px;
     border-radius: 20px;
     border: none;
-    background: radial-gradient(#8ee7d1, #013d38);
+    background: radial-gradient(#5ebaa3, #013d38);
     box-shadow: 0 0 10px #c4f6f690;
     color: #f9f9f9;
     cursor: pointer;

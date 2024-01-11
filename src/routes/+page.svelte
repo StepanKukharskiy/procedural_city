@@ -11,7 +11,7 @@
 
 
 <div class='startScreen' style='display: {startScreenDisplay}'>
-  <h2>Discrete Spaces: A Procedural World Project</h2>
+  <h2>Discrete City: A Procedural World Project</h2>
   <p>
     This project is created for the Three.js Journey Procedural World challenge. <br><br>
     It is a fantasy city, inspired by the idea of discrete space, works of Stephen Wolfram, and capsule architecture of Nakagin Tower in Tokyo. <br><br>
@@ -73,7 +73,7 @@
     height: 40px;
     border-radius: 20px;
     border: none;
-    background: radial-gradient(#8ee7d1, #013d38);
+    background: radial-gradient(#5ebaa3, #013d38);
     box-shadow: 0 0 10px #8ee7d190;
     color: #f9f9f9;
     margin: 20px;
