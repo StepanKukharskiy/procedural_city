@@ -1,38 +1,11 @@
-# create-svelte
+# Discrete City: A Procedural World Project
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+This project is created for the Three.js Journey Procedural World challenge.
 
-## Creating a project
+Here is the online version: https://discrete-city.netlify.app/
 
-If you're seeing this, you've probably already done this step. Congrats!
+It is a fantasy city, inspired by the idea of discrete space, works of Stephen Wolfram, and capsule architecture of Nakagin Tower in Tokyo.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+The world's generation is driven by a 3D Neural Cellular Automaton - a 3D cellular automaton controlled by a pre-trained neural network.
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+Built with Threlte, SvelteKit, Three.js, and Brain.js. Modelled with Blender. Textures made with Midjourney. 
