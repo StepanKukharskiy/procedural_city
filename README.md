@@ -1,6 +1,6 @@
 # Discrete City: A Procedural World Project
 
-This project is created for the [Three.js Journey] (https://threejs-journey.com/) Procedural World challenge.
+This project is created for the [Three.js Journey](https://threejs-journey.com/) Procedural World challenge.
 
 Here is the online version: https://discrete-city.netlify.app/
 
