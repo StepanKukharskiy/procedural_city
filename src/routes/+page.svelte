@@ -13,7 +13,7 @@
 <div class='startScreen' style='display: {startScreenDisplay}'>
   <h2>Discrete City: A Procedural World Project</h2>
   <p>
-    This project is created for the Three.js Journey Procedural World challenge. <br><br>
+    This project is created for the <a href='https://threejs-journey.com/' target='_blank'>Three.js Journey</a> Procedural World challenge. <br><br>
     It is a fantasy city, inspired by the idea of discrete space, works of Stephen Wolfram, and capsule architecture of Nakagin Tower in Tokyo. <br><br>
     The world's generation is driven by a 3D Neural Cellular Automaton - a 3D cellular automaton controlled by a pre-trained neural network.<br><br>
     Built with Threlte, SvelteKit, Three.js, and Brain.js. Modelled with Blender. Textures made with Midjourney. Here is the <a href='https://github.com/StepanKukharskiy/procedural_city'>GitHub repo</a>.<br><br>
